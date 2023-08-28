@@ -1,0 +1,36 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Mock data for demonstration purposes
+transcripts = {
+    "video_id_1": "Transcript of video 1...",
+    "video_id_2": "Transcript of video 2...",
+    # Add more video transcripts as needed
+}
+
+# Import your summarization logic from a separate module
+# from summarization import generate_summary
+
+# Mock summarization function
+def generate_summary(transcript):
+    # Simplified summarization logic
+    sentences = transcript.split(".")
+    important_sentences = sentences[:3]  # Select first 3 sentences as summary
+    summary = " ".join(important_sentences)
+    return summary
+
+@app.route('/summarize', methods=['POST'])
+def summarize_video():
+    data = request.get_json()
+    video_id = data.get('video_id')
+
+    if video_id in transcripts:
+        transcript = transcripts[video_id]
+        summary = generate_summary(transcript)
+        return jsonify({'summary': summary})
+    else:
+        return jsonify({'error': 'Video ID not found'}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
