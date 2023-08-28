@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Transcript Summarizer</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 10px;
+        }
+        h2 {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Video Summarizer</h2>
+    <label for="videoId">YouTube Video ID:</label>
+    <input type="text" id="videoId">
+    <button id="summarizeBtn">Summarize</button>
+    <div id="summary"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
